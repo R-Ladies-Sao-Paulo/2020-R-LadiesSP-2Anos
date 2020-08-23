@@ -1,0 +1,116 @@
+---
+title: "Censo R-Ladies 2020"
+date: "ago/2020"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+# Agenda
+- Quem são as R-Ladies
+- RStudio/Rmarkdown
+- Introdução do Censo: falar sobre amostra/censo/pesquisa at all
+- Leitura: github/ boa práticas na nomeação de objetos
+- P0
+    - viés de pesquisa
+- P1
+    - geom_bar/wordcloud
+- P2
+    - ...
+- P3
+    - ...
+- P4
+    - ...
+- P5
+    - sindrome do impostos
+- P6
+  - ...
+- P7
+  - ...
+
+# Preâmbulo
+```{r setup, include=FALSE}
+  knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r libs, include=FALSE}
+    #set of packages
+    if(!require(tidyverse)){install.packages("tidyverse"); library(tidyverse)}
+    #allows to interact with files on Google Drive
+    if(!require(googledrive)){install.packages("googledrive"); library(googledrive)}
+    #helps with the interaction with Sheets as an authenticated Google user
+    if(!require(googlesheets4)){install.packages("googlesheets4"); library(googlesheets4)}
+    #explore data
+    if(!require(janitor)){install.packages("janitor"); library(janitor)}
+    
+    #text Mining
+    if(!require(wordcloud)){install.packages("wordcloud"); library(wordcloud)}
+    if(!require(tm)){install.packages("tm"); library(tm)}
+
+```
+
+# Leitura
+```{r read}
+  rladies_censo2020_raw <- read_csv("data/censo-r-ladies-sp-2020.csv")
+```
+
+```{r tidy}
+ rladies_censo2020 <- rladies_censo2020_raw %>%
+  janitor::clean_names() %>% 
+        rename(
+          p0_data = 1,
+          p0_acordo = voce_esta_de_acordo,
+          p0_origem = como_ficou_sabendo_desta_pesquisa_censo,
+          p1_genero = em_relacao_ao_seu_genero_como_voce_se_identifica,
+          p1_nascimento = qual_a_sua_data_de_nascimento,
+        ) %>% 
+        glimpse
+```
+
+# Análise
+## P1 - Perfil sociodemográfico
+### genero
+### nascimento
+### idade
+### estado civil
+### raça
+### maternidade
+### pcd
+### lgbt+
+### restrições Alimentares
+### sente representada
+## P2 - Perfil socioeconômico 
+### renda_valor
+### renda_contribuem
+### renda_vivem
+### região
+## P3 - Escolaridade
+### escolaridade
+### ano
+### area
+### estudando
+## P4 - Ocupação
+### vínculo_atual
+### perfil_profissional
+### ocupação_atual
+### mudança_area
+## P5 - Trajetória em Tecnologia
+### conhecimento_programação
+### conhecimento_R
+### bibliotecas_R
+### conhecimento_linguagens
+### conhecimento_linguagens_quais
+### conhecimento_git
+## P6 - Trajetória nas R-Ladies
+### origem
+### comunidades
+### comunidades_quais
+### evento
+### notebook
+### notebook_sistema
+## P7 - Sugestões para R-Ladies
+### dias_horários
+### formatos
+### temas
+### mensagem
+### interesse
