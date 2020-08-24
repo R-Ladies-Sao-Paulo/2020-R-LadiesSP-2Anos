@@ -51,20 +51,19 @@ editor_options:
 
 # Leitura
 ```{r read}
-  rladies_censo2020_raw <- read_csv("data/censo-r-ladies-sp-2020.csv")
+# lê pelo CSV
+# rladies_censo2020_raw <- read_csv("docs/data/censo-r-ladies-sp-2020.csv")
+
+# lê pelo Google Sheets
+rladies_censo2020_raw <- googlesheets4::read_sheet('1ht53wO-qiWsrF3zLIn6DaENNLLjQGqleZL6E6g0lMTc', sheet="Respostas")
+
+# lê a padronização das colunas
+censo_cols <- googlesheets4::read_sheet('1ht53wO-qiWsrF3zLIn6DaENNLLjQGqleZL6E6g0lMTc', sheet="Padronização")
 ```
 
 ```{r tidy}
  rladies_censo2020 <- rladies_censo2020_raw %>%
-  janitor::clean_names() %>% 
-        rename(
-          p0_data = 1,
-          p0_acordo = voce_esta_de_acordo,
-          p0_origem = como_ficou_sabendo_desta_pesquisa_censo,
-          p1_genero = em_relacao_ao_seu_genero_como_voce_se_identifica,
-          p1_nascimento = qual_a_sua_data_de_nascimento,
-        ) %>% 
-        glimpse
+  rename(set_names(censo_cols$nome_original, censo_cols$nome_final))
 ```
 
 # Análise
