@@ -63,7 +63,10 @@ censo_cols <- googlesheets4::read_sheet('1ht53wO-qiWsrF3zLIn6DaENNLLjQGqleZL6E6g
 
 ```{r tidy}
  rladies_censo2020 <- rladies_censo2020_raw %>%
-  rename(set_names(censo_cols$nome_original, censo_cols$nome_final))
+  rename(set_names(censo_cols$nome_original, censo_cols$nome_final)) %>% # adiciona padronização de nomes
+  mutate(p1_idade=interval(p1_nascimento, today()) %/% years(1)) %>% # adiciona coluna de idade
+  filter(!is.na(p0_origem)) %>% # filtra respostas válidas
+  select(p0_data:p1_nascimento, p1_idade, everything()) # reordena as colunas
 ```
 
 # Análise
