@@ -65,9 +65,17 @@ censo_cols <- googlesheets4::read_sheet('1ht53wO-qiWsrF3zLIn6DaENNLLjQGqleZL6E6g
  rladies_censo2020 <- rladies_censo2020_raw %>%
   rename(set_names(censo_cols$nome_original, censo_cols$nome_final)) %>% # adiciona padronização de nomes
   mutate(p1_idade=interval(p1_nascimento, today()) %/% years(1)) %>% # adiciona coluna de idade
+  mutate_at(c('p1_maternidade_n', 'p2_renda_contribuem', 'p2_renda_vivem', 'p3_ano_titulo'), 
+            ~str_replace_all(., "NULL", NA_character_)) %>% # substitui NULL por NA
   filter(!is.na(p0_origem)) %>% # filtra respostas válidas
   select(p0_data:p1_nascimento, p1_idade, everything()) # reordena as colunas
 ```
+
+```{r wordcloud}
+aberta_rladies_censo2020 <- rladies_censo2020 %>% 
+  select_at(vars(ends_with('aberta')))
+```
+
 
 # Análise
 ## P1 - Perfil sociodemográfico
