@@ -71,6 +71,18 @@ censo_cols <- googlesheets4::read_sheet('1ht53wO-qiWsrF3zLIn6DaENNLLjQGqleZL6E6g
   select(p0_data:p1_nascimento, p1_idade, everything()) # reordena as colunas
 ```
 
+```{r analysis}
+# % por cada raça
+rladies_censo2020 %>% group_by(p1_raca) %>% 
+  summarize(n=n()) %>% arrange(desc(n)) %>% 
+  mutate(pc=scales::percent(n/sum(n)))
+
+# conhecimento em r por cada raça
+rladies_censo2020 %>% group_by(p1_raca) %>% 
+  summarize(conhecimento_medio=mean(p5_conhecimento_r))
+```
+
+
 ```{r wordcloud}
 aberta_rladies_censo2020 <- rladies_censo2020 %>% 
   select_at(vars(ends_with('aberta')))
