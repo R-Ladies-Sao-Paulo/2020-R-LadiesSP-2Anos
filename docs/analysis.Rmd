@@ -72,14 +72,19 @@ censo_cols <- googlesheets4::read_sheet('1ht53wO-qiWsrF3zLIn6DaENNLLjQGqleZL6E6g
 ```
 
 ```{r analysis}
-# % por cada raça
+# % de cada raça
 rladies_censo2020 %>% group_by(p1_raca) %>% 
   summarize(n=n()) %>% arrange(desc(n)) %>% 
   mutate(pc=scales::percent(n/sum(n)))
 
-# conhecimento em r por cada raça
+# conhecimento em r por raça
 rladies_censo2020 %>% group_by(p1_raca) %>% 
   summarize(conhecimento_medio=mean(p5_conhecimento_r))
+
+# se sentir representada por raça
+rladies_censo2020 %>% group_by(p1_representatividade) %>%
+  count(p1_raca) %>% group_by(p1_raca) %>%
+  mutate(pc=scales::percent(n/sum(n))) %>% arrange(desc(n))
 ```
 
 
