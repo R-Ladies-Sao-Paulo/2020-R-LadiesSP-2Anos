@@ -6,15 +6,28 @@ editor_options:
   chunk_output_type: console
 ---
 
+# Intro
+
+> Aniversário é sobre crescimento, evolução, certo? 
+Pois bem, com isto em mente preparamos uma comemoração especial para os 2 anos das R-Ladies São Paulo <3
+Iremos analisar o nosso censo 2020, isso mesmo, nós! Pois a análise será feita ao vivo! 
+Comentando escolhas, apresentando bibliotecas e, principalmente, discutindo resultados! 
+E para nos ajudar nestas discussões, teremos três convidadas mais que especiais:
+Ana Carolina Moreno (Globo), Anycele Santos (AfroPython) e Natalia Souza (Google). 
+
+<!-- aspectos sociodemográficos, econômicos, profissionais e de conhecimento técnico  -->
+
+
 # Agenda
 - Quem são as R-Ladies
-- RStudio/Rmarkdown
-- Introdução do Censo: falar sobre amostra/censo/pesquisa at all
-- Leitura: github/ boa práticas na nomeação de objetos
+- Intro pocket RStudio/Rmarkdown
+- Intro Censo R-Ladies
+    - conceito de censo/amostra/pesquisa 
 - P0
-    - viés de pesquisa
+    - conceitual: viés de pesquisa
+    - tecnica: leitura dados github/ boa práticas na nomeação de objetos
 - P1
-    - geom_bar/wordcloud
+    - tecnica: geom_bar/wordcloud
 - P2
     - ...
 - P3
@@ -34,16 +47,20 @@ editor_options:
 ```
 
 ```{r libs, include=FALSE}
-    #set of packages
+  #set of packages
     if(!require(tidyverse)){install.packages("tidyverse"); library(tidyverse)}
+    library(lubridate)
+
+  #read
     #allows to interact with files on Google Drive
     if(!require(googledrive)){install.packages("googledrive"); library(googledrive)}
     #helps with the interaction with Sheets as an authenticated Google user
     if(!require(googlesheets4)){install.packages("googlesheets4"); library(googlesheets4)}
-    #explore data
+
+  #explore data
     if(!require(janitor)){install.packages("janitor"); library(janitor)}
-    
-    #text Mining
+  
+  #text Mining
     if(!require(wordcloud)){install.packages("wordcloud"); library(wordcloud)}
     if(!require(tm)){install.packages("tm"); library(tm)}
 
@@ -58,13 +75,13 @@ editor_options:
 rladies_censo2020_raw <- googlesheets4::read_sheet('1ht53wO-qiWsrF3zLIn6DaENNLLjQGqleZL6E6g0lMTc', sheet="Respostas")
 
 # lê a padronização das colunas
-censo_cols <- googlesheets4::read_sheet('1ht53wO-qiWsrF3zLIn6DaENNLLjQGqleZL6E6g0lMTc', sheet="Padronização")
+censo_cols <- googlesheets4::read_sheet('1ht53wO-qiWsrF3zLIn6DaENNLLjQGqleZL6E6g0lMTc', sheet="nome_colunas")
 ```
 
 ```{r tidy}
  rladies_censo2020 <- rladies_censo2020_raw %>%
   rename(set_names(censo_cols$nome_original, censo_cols$nome_final)) %>% # adiciona padronização de nomes
-  mutate(p1_idade=interval(p1_nascimento, today()) %/% years(1)) %>% # adiciona coluna de idade
+  mutate(p1_idade = interval(p1_nascimento, today()) %/% years(1)) %>% # adiciona coluna de idade
   mutate_at(c('p1_maternidade_n', 'p2_renda_contribuem', 'p2_renda_vivem', 'p3_ano_titulo'), 
             ~str_replace_all(., "NULL", NA_character_)) %>% # substitui NULL por NA
   filter(!is.na(p0_origem)) %>% # filtra respostas válidas
