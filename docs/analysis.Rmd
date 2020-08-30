@@ -101,7 +101,7 @@ rladies_censo2020 %>% group_by(p1_raca) %>%
 # se sentir representada por raça
 rladies_censo2020 %>% group_by(p1_representatividade) %>%
   count(p1_raca) %>% group_by(p1_raca) %>%
-  mutate(pc=scales::percent(n/sum(n))) %>% arrange(desc(n))
+  mutate(pc=scales::percent(n/sum(n))) %>% arrange(p1_raca, desc(p1_representatividade))
 ```
 
 
