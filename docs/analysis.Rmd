@@ -1,51 +1,46 @@
 ---
-title: "Censo R-Ladies 2020"
-date: "ago/2020"
+title: "Análise do Censo R-Ladies 2020"
+date: "Meetup Set/2020"
 output: html_document
 editor_options: 
-  chunk_output_type: console
+  chunk_output_type: inline
 ---
 
-# Intro
-
-> Aniversário é sobre crescimento, evolução, certo? 
-Pois bem, com isto em mente preparamos uma comemoração especial para os 2 anos das R-Ladies São Paulo <3
-Iremos analisar o nosso censo 2020, isso mesmo, nós! Pois a análise será feita ao vivo! 
-Comentando escolhas, apresentando bibliotecas e, principalmente, discutindo resultados! 
-E para nos ajudar nestas discussões, teremos três convidadas mais que especiais:
-Ana Carolina Moreno (Globo), Anycele Santos (AfroPython) e Natalia Souza (Google). 
-
-<!-- aspectos sociodemográficos, econômicos, profissionais e de conhecimento técnico  -->
-
-
-# Agenda
-- Quem são as R-Ladies
-- Intro pocket RStudio/Rmarkdown
-- Intro Censo R-Ladies
-    - conceito de censo/amostra/pesquisa 
-- P0
-    - conceitual: viés de pesquisa
-    - tecnica: leitura dados github/ boa práticas na nomeação de objetos
-- P1
-    - tecnica: geom_bar/wordcloud
-- P2
-    - ...
-- P3
-    - ...
-- P4
-    - ...
-- P5
-    - sindrome do impostos
-- P6
-  - ...
-- P7
-  - ...
-
-# Preâmbulo
 ```{r setup, include=FALSE}
-  knitr::opts_chunk$set(echo = TRUE)
+  knitr::opts_chunk$set(echo = TRUE, tidy = TRUE, message = FALSE, warning = FALSE)
 ```
 
+> Aniversário é sobre crescimento, evolução, certo? 
+Pois bem, com isto em mente, preparamos uma comemoração especial para os 2 anos das R-Ladies São Paulo <3
+Iremos analisar o resultado do nosso Censo 2020, isso mesmo, nós! Pois a análise será feita ao vivo, live coding! Explicando conceitos, comentando escolhas, apresentando bibliotecas e, principalmente, discutindo resultados! E para nos ajudar nestas discussões, teremos três convidadas mais que especiais:
+Ana Carolina Moreno (jornalista/R-Ladies), Anycele Santos (citar filiação) e Natalia Souza (IME-USP/Google). 
+
+# Agenda
+- Intro R-Ladies
+- Intro Censo R-Ladies
+- Resultados da Pesquisa:
+  - Leitura dos Dados
+  - Perfil sociodemográfico (P1)
+      - TED: Anycele Santos
+      
+      
+  - Perfil socioeconômico (P2)
+      - TED: Ana Carolina Moreno
+      
+      
+  - Escolaridade (P3) 
+  - Ocupação (P4)
+      - TED: Natalia Souza
+      
+      
+  - Trajetória em Tecnologia (P5)
+  - Trajetória nas R-Ladies (P6)
+  - Sugestões para R-Ladies (P7)
+- MESA REDONDA 
+- Considerações Finais
+
+
+# Preâmbulo
 ```{r libs, include=FALSE}
   #set of packages
     if(!require(tidyverse)){install.packages("tidyverse"); library(tidyverse)}
@@ -67,43 +62,34 @@ Ana Carolina Moreno (Globo), Anycele Santos (AfroPython) e Natalia Souza (Google
 ```
 
 # Leitura
-```{r read}
+```{r read, results='hide'}
 # lê pelo CSV
-# rladies_censo2020_raw <- read_csv("docs/data/censo-r-ladies-sp-2020.csv")
+  #rladies_censo2020_raw <- read_csv("data/censo-r-ladies-sp-2020.csv")
 
 # lê pelo Google Sheets
-rladies_censo2020_raw <- googlesheets4::read_sheet('1ht53wO-qiWsrF3zLIn6DaENNLLjQGqleZL6E6g0lMTc', sheet="Respostas")
-
-# lê a padronização das colunas
-censo_cols <- googlesheets4::read_sheet('1ht53wO-qiWsrF3zLIn6DaENNLLjQGqleZL6E6g0lMTc', sheet="nome_colunas")
+  id <- '1ht53wO-qiWsrF3zLIn6DaENNLLjQGqleZL6E6g0lMTc'
+  rladies_censo2020_raw <- googlesheets4::read_sheet(id, sheet="Respostas")
+  
+  # lê a padronização das colunas
+  censo_cols <- googlesheets4::read_sheet(id, sheet="nome_colunas")
 ```
 
+# Ajustes
 ```{r tidy}
  rladies_censo2020 <- rladies_censo2020_raw %>%
-  rename(set_names(censo_cols$nome_original, censo_cols$nome_final)) %>% # adiciona padronização de nomes
-  mutate(p1_idade = interval(p1_nascimento, today()) %/% years(1)) %>% # adiciona coluna de idade
+  # adiciona padronização de nomes
+  rename(set_names(censo_cols$nome_original, censo_cols$nome_final)) %>% 
+  # adiciona coluna de idade
+  mutate(p1_idade = interval(p1_nascimento, today()) %/% years(1)) %>% 
+  # substitui NULL por NA
   mutate_at(c('p1_maternidade_n', 'p2_renda_contribuem', 'p2_renda_vivem', 'p3_ano_titulo'), 
-            ~str_replace_all(., "NULL", NA_character_)) %>% # substitui NULL por NA
-  filter(!is.na(p0_origem)) %>% # filtra respostas válidas
-  select(p0_data:p1_nascimento, p1_idade, everything()) # reordena as colunas
+            ~str_replace_all(., "NULL", NA_character_)) %>% 
+  # filtra respostas válidas
+  filter(!is.na(p0_origem)) %>% 
+  # reordena as colunas
+  select(p0_data:p1_nascimento, p1_idade, everything()) 
+
 ```
-
-```{r analysis}
-# % de cada raça
-rladies_censo2020 %>% group_by(p1_raca) %>% 
-  summarize(n=n()) %>% arrange(desc(n)) %>% 
-  mutate(pc=scales::percent(n/sum(n)))
-
-# conhecimento em r por raça
-rladies_censo2020 %>% group_by(p1_raca) %>% 
-  summarize(conhecimento_medio=mean(p5_conhecimento_r))
-
-# se sentir representada por raça
-rladies_censo2020 %>% group_by(p1_representatividade) %>%
-  count(p1_raca) %>% group_by(p1_raca) %>%
-  mutate(pc=scales::percent(n/sum(n))) %>% arrange(p1_raca, desc(p1_representatividade))
-```
-
 
 ```{r wordcloud}
 aberta_rladies_censo2020 <- rladies_censo2020 %>% 
@@ -118,6 +104,24 @@ aberta_rladies_censo2020 <- rladies_censo2020 %>%
 ### idade
 ### estado civil
 ### raça
+```{r}
+# % de cada raça
+rladies_censo2020 %>% 
+  group_by(p1_raca) %>% 
+  summarize(n=n()) %>% 
+  arrange(desc(n)) %>% 
+  mutate(pc=scales::percent(n/sum(n)))
+
+# conhecimento em r por raça
+rladies_censo2020 %>% group_by(p1_raca) %>% 
+  summarize(conhecimento_medio=mean(p5_conhecimento_r))
+
+# se sentir representada por raça
+rladies_censo2020 %>% group_by(p1_representatividade) %>%
+  count(p1_raca) %>% group_by(p1_raca) %>%
+  mutate(pc=scales::percent(n/sum(n))) %>% arrange(p1_raca, desc(p1_representatividade))
+```
+
 ### maternidade
 ### pcd
 ### lgbt+
@@ -157,4 +161,69 @@ aberta_rladies_censo2020 <- rladies_censo2020 %>%
 ### formatos
 ### temas
 ### mensagem
+```{r}
+library(tidytext)
+library(wordcloud2)
+
+stop_port <- get_stopwords(language = "pt")
+stopwords <- read_csv(
+  file = "http://www.labape.com.br/rprimi/ds/stopwords.txt",
+  col_names = FALSE)
+
+
+rladies_p7_mensagem_aberta <- rladies_censo2020 %>% 
+  select(p7_mensagem_aberta) %>% 
+  unnest_tokens(word, p7_mensagem_aberta) %>% 
+  # count(word) %>% 
+  # arrange(-n) %>% 
+  anti_join(stop_port) %>% 
+   filter(!str_detect(word, "^\\d"))
+```
+
+
+```{r}
+rladies_p7_mensagem_aberta %>% 
+  count(word) %>% 
+  filter(n > 5 ) %>%
+  mutate(word = reorder(word, n)) %>%
+       ggplot(aes(word, n)) +
+        geom_col() +
+        xlab(NULL) +
+        coord_flip()
+```
+
+
+```{r}
+rladies_p7_mensagem_aberta %>% 
+  count(word) %>% 
+  #with(wordcloud(word, n))
+  wordcloud2(size = .5, 
+             shape = "oval",
+             rotateRatio = 0.5, 
+             ellipticity = 0.9)
+
+
+```
+
+
+```{r, eval = F, echo = F}
+regex_stop <- paste0("\\b", stop_port$word, "\\b", collapse = "|")
+
+rladies_censo2020 %>% 
+  select(p7_mensagem_aberta) %>% 
+  mutate(p7_mensagem_aberta = str_remove_all(p7_mensagem_aberta, regex_stop)) %>% 
+  unnest_tokens(word, p7_mensagem_aberta, token = stringr::str_split, pattern = " ")
+
+```
+
+
+
 ### interesse
+
+# Referências
+
+- Grolemund Garrett e Wickham Hadley. R for Data Science: Import, Tidy, Transform. O'Reilly Media, 2017. — 522 p. — ISBN 9781491910399. https://r4ds.had.co.nz/
+
+- Silge Julia e Robinson David. 2020. Text Mining with R. https://www.tidytextmining.com/
+
+
