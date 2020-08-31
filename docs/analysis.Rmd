@@ -13,7 +13,7 @@ editor_options:
 > Aniversário é sobre crescimento, evolução, certo? 
 Pois bem, com isto em mente, preparamos uma comemoração especial para os 2 anos das R-Ladies São Paulo <3
 Iremos analisar o resultado do nosso Censo 2020, isso mesmo, nós! Pois a análise será feita ao vivo, live coding! Explicando conceitos, comentando escolhas, apresentando bibliotecas e, principalmente, discutindo resultados! E para nos ajudar nestas discussões, teremos três convidadas mais que especiais:
-Ana Carolina Moreno (jornalista/R-Ladies), Anycele Santos (citar filiação) e Natalia Souza (IME-USP/Google). 
+Ana Carolina Moreno (jornalista/R-Ladies), Anicely Santos (InspirAda na Computação/Afropython) e Natalia Souza (IME-USP/Google). 
 
 # Agenda
 - Intro R-Ladies
