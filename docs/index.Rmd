@@ -27,7 +27,7 @@ layout: true
 <a href="http://instagram.com/RLadiesSaoPaulo">Instagram</a> |
 <a href="http://facebook.com/RLadiesSaoPaulo">Facebook</a> |
 <a href="https://github.com/rladies/meetup-presentations_sao-paulo">GitHub</a> |
-<a href="http://bit.ly/2020-2-rladies">bit.ly/2020-2-rladies</a>
+<a href="https://bit.ly/2020-18-rladies">bit.ly/2020-18-rladies</a>
 
 
 </span></div> 
@@ -67,9 +67,25 @@ library(tidyverse) # Para carregar a biblioteca
 class:
 
 # Programação
+- Sobre o Censo R-Ladies e leitura dos dados
 
+- Resultados: perfil sociodemográfico
 
-- ???
+- TED Anicely Santos (InspirAda na Computação/Afropython)
+
+- Resultados: perfil socioeconômico
+
+- TED	Ana Carolina Moreno (jornalista/R-Ladies)
+
+- Resultados: escolaridade e ocupação
+
+- TED	Natalia Souza (IME-USP/Google)
+
+- Resultados: trajetórias e sugestões
+
+- Mesa redonda
+
+- Considerações finais	
 
 ---
 class: center, middle, inverse
@@ -195,8 +211,83 @@ class: center, middle, inverse
 
 # Vamos começar?
 
-????
+---
+class:   
 
+# Analisando o Censo R-Ladies SP
+
+## Sobre o Censo
+
+- Rodamos de **19 de janeiro de 2020** a **06 de aogsto de 2020**
+
+- Divulgação na página do Meetup e grupo do Telegram
+
+- 159 respondentes e 56 perguntas no total
+
+- Anônimo (sem identificação de quem respondeu)
+
+- Análise de forma aberta e colaborativa pela comunidade
+
+---
+class:   
+
+# Analisando o Censo R-Ladies SP
+
+## Fazendo a leitura dos dados
+
+```{r echo=FALSE, out.width="100%"}
+knitr::include_graphics("img/prints-censo/censo-bruto.png")
+```
+---
+class:   
+
+# Analisando o Censo R-Ladies SP
+
+## Padronizando as colunas
+
+```{r echo=FALSE, out.width="100%"}
+knitr::include_graphics("img/prints-censo/censo-padrao.png")
+```
+---
+class:   
+
+# Analisando o Censo R-Ladies SP
+
+## Vamos para o RStudio!
+
+```{r echo=FALSE}
+knitr::include_graphics("img/rlogos/rstudio.jpg")
+```
+---
+class:   
+
+# TED
+
+## Anicely Santos
+---
+class:   
+
+# TED
+
+## Ana Carolina Moreno
+---
+class:   
+
+# TED
+
+## Natalia Souza
+---
+class:   
+
+# TED
+
+## Mesa Redonda
+---
+class:   
+
+# Analisando o Censo R-Ladies SP
+
+## Considerações finais
 ---
 class:    
 
