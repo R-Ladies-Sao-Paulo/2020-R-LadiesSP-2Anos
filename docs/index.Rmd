@@ -1,7 +1,7 @@
 ---
 title: "<center><img src= 'img/rainbow.png' width = '30%' alt='R-Ladies Logo'></br></center> "
 subtitle: "R-Ladies São Paulo <BR> 2 anos das R-Ladies SP"
-author: "agosto de 2020"
+author: "Setembro de 2020"
 encoding: "UTF-8"
 output:
   xaringan::moon_reader:
@@ -44,6 +44,11 @@ library(dados)
 
 ```
 
+```{r xaringan-fit-screen, echo=FALSE}
+library(xaringanExtra)
+xaringanExtra::use_fit_screen()
+```
+
 # Pré-requisitos
 
 ## `R` e `RStudio` instalados no seu notebook 
@@ -55,7 +60,7 @@ knitr::include_graphics("img/rlogos/rstudio-r.jpg")
 - Instale o R [fazendo o download aqui](https://cran.r-project.org/) e o RStudio [aqui](https://rstudio.com/products/rstudio/download/#download).
 
 
-## Pacote ggplot2 e tidyverse instalados
+## Pacote `tidyverse` instalado
 
 ```{r eval=FALSE, include=TRUE}
 install.packages("tidyverse") # Para instalar 
@@ -67,21 +72,22 @@ library(tidyverse) # Para carregar a biblioteca
 class:
 
 # Programação
+
 - Sobre o Censo R-Ladies e leitura dos dados
 
-- Resultados: perfil sociodemográfico
+- Resultados: Perfil sociodemográfico
 
-- TED Anicely Santos (InspirAda na Computação/Afropython)
+  - TED Anicely Santos (InspirAda na Computação/Afropython)
 
-- Resultados: perfil socioeconômico
+- Resultados: Perfil socioeconômico
 
-- TED	Ana Carolina Moreno (jornalista/R-Ladies)
+  - TED	Ana Carolina Moreno (jornalista/R-Ladies)
 
-- Resultados: escolaridade e ocupação
+- Resultados: Escolaridade e ocupação
 
-- TED	Natalia Souza (IME-USP/Google)
+  - TED	Natalia Souza (IME-USP/Google)
 
-- Resultados: trajetórias e sugestões
+- Resultados: Trajetórias e sugestões
 
 - Mesa redonda
 
@@ -149,22 +155,22 @@ class:
 
 ## Crescimento da R-Ladies no mundo
 
-```{r echo=FALSE, fig.align='center', out.width="100%"}
+```{r echo=FALSE, fig.align='center', out.width="80%"}
 knitr::include_graphics("img/echarts.png")
 ```
 
-Atualizado em: Junho/2020. Fonte: [R Community Explorer](https://benubah.github.io/r-community-explorer/rladies.html) 
+Atualizado em: Setembro/2020. Fonte: [R Community Explorer](https://benubah.github.io/r-community-explorer/rladies.html) 
 ---
 class: 
 
 # Sobre as R-Ladies
 
 ## Comunidade da R-Ladies - Capítulos no mundo
-```{r echo=FALSE, out.width="100%"}
+```{r echo=FALSE, out.width="70%"}
 knitr::include_graphics("img/r-ladies-community.PNG")
 ```
 
-Atualizado em: Junho/2020. Fonte: [R Community Explorer](https://benubah.github.io/r-community-explorer/rladies.html) 
+Atualizado em: Setembro/2020. Fonte: [R Community Explorer](https://benubah.github.io/r-community-explorer/rladies.html) 
 
 ---
 class:    
@@ -194,16 +200,45 @@ rladies <- readr::read_csv("data/rladies.csv")
 Atualizado em: `r  format(Sys.time(), '%B de %Y')`. Fonte: [R Community Explorer](https://benubah.github.io/r-community-explorer/rladies.html) 
 
 ```{r echo=FALSE}
-rladies %>% 
+rladies %>%
   dplyr::arrange(desc(members)) %>%
   filter(country == "Brazil") %>%
-  select(-X1,-city,-region,-fullurl,-country, -created, -upcoming_events, -last_event, -past_events) %>%
-    DT::datatable(autoHideNavigation = TRUE
-                  ,
-                options = list(pageLength = 7)
-                )
+  mutate(name = paste0("<a href='", fullurl, "' target='_blank'>", name, "</a>")) %>%
+  select(
+    -X1,
+    -city,
+    -region,
+    -fullurl,
+    -country,
+    -created,
+    -upcoming_events,
+    -last_event,
+    -past_events,
+    -status
+  ) %>%
+  
+  DT::datatable(autoHideNavigation = TRUE                ,
+                options = list(pageLength = 7),
+                  colnames = c("Capítulo", "Pessoas participantes"))
 ```
 
+```{r include=FALSE}
+pessoas_sp <- rladies %>% filter(city == "São Paulo") %>% select(members) %>% pull()
+```
+
+---
+class: 
+
+# R-Ladies em São Paulo
+
+```{r echo=FALSE, out.width="50%"}
+knitr::include_graphics("img/1meetupsp.jpeg")
+```
+
+
+- **Primeiro encontro da R-Ladies São Paulo ** - Agosto/2018
+
+- **+ `r pessoas_sp` pessoas participantes** - `r format(Sys.Date(), format='%B de %Y')`
 
 
 ---
@@ -218,7 +253,7 @@ class:
 
 ## Sobre o Censo
 
-- Rodamos de **19 de janeiro de 2020** a **06 de aogsto de 2020**
+- Período de coleta: de **19 de janeiro de 2020** a **06 de agosto de 2020**
 
 - Divulgação na página do Meetup e grupo do Telegram
 
@@ -235,7 +270,7 @@ class:
 
 ## Fazendo a leitura dos dados
 
-```{r echo=FALSE, out.width="100%"}
+```{r echo=FALSE, out.width="95%"}
 knitr::include_graphics("img/prints-censo/censo-bruto.png")
 ```
 ---
@@ -245,7 +280,7 @@ class:
 
 ## Padronizando as colunas
 
-```{r echo=FALSE, out.width="100%"}
+```{r echo=FALSE, out.width="80%"}
 knitr::include_graphics("img/prints-censo/censo-padrao.png")
 ```
 ---
@@ -259,50 +294,75 @@ class:
 knitr::include_graphics("img/rlogos/rstudio.jpg")
 ```
 ---
-class:   
+class: middle, center
 
-# TED
+<!-- # TED -->
 
-## Anicely Santos
+<!-- ## Anicely Santos -->
+
+
+```{r echo=FALSE, out.width="100%"}
+knitr::include_graphics("img/palestrante-anicely-santos.png")
+```
+
 ---
-class:   
+class:   middle, center
 
-# TED
+<!-- # TED -->
 
-## Ana Carolina Moreno
+<!-- ## Ana Carolina Moreno -->
+
+```{r echo=FALSE, out.width="100%"}
+knitr::include_graphics("img/palestrante-carol-moreno.png")
+```
+
+
 ---
-class:   
+class:  middle, center 
 
-# TED
+<!-- # TED -->
 
-## Natalia Souza
+<!-- ## Natalia Souza -->
+
+
+```{r echo=FALSE, out.width="100%"}
+knitr::include_graphics("img/palestrante-natalia-souza.png")
+```
+
+
 ---
-class:   
+class: 
 
 # TED
 
 ## Mesa Redonda
+
 ---
 class:   
 
 # Analisando o Censo R-Ladies SP
 
 ## Considerações finais
+
 ---
-class:    
+class:
 
-# Referências e Dicas
+# Como contribuir/participar?
+
+- Caso queira contribuir com a comunidade,  responda este [formulário abaixo](https://docs.google.com/forms/d/11G1EdaLbJi0hBuhpVpVQdyijDAXbdOuY7YSdHfLfMis/viewform?edit_requested=true).
 
 
-- [Workshop Code Your Graph](https://alison.rbind.io/html/jamboree_heart_ggplot.html)
+<center>
+<iframe src="https://docs.google.com/forms/d/11G1EdaLbJi0hBuhpVpVQdyijDAXbdOuY7YSdHfLfMis/viewform?edit_requested=true" height="100%" width="100%" style="min-height: 400px;"></iframe>
+</center>
 
-- [R for Data Science - capítulos 3 e 28](https://r4ds.had.co.nz/data-visualisation.html)
 
 
 ---
 class:   
 
 # Como saber mais?
+
   - Website RLadies Global: [https://rladies.org/](https://rladies.org/)
   - Twitter: [@RLadiesGlobal](https://twitter.com/rladiesglobal), [@RLadiesSaoPaulo](https://twitter.com/RLadiesSaoPaulo)
   - Instagram: [@RLadiesSaoPaulo](http://instagram.com/RLadiesSaoPaulo)
