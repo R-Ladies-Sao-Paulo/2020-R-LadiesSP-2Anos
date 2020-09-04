@@ -356,6 +356,17 @@ class:
 <iframe src="https://docs.google.com/forms/d/11G1EdaLbJi0hBuhpVpVQdyijDAXbdOuY7YSdHfLfMis/viewform?edit_requested=true" height="100%" width="100%" style="min-height: 400px;"></iframe>
 </center>
 
+---
+class:
+
+# Questionário para América Latina
+
+- Caso queira contribuir com a comunidade,  responda o [Questionário para América Latina 2020](https://rfoundation.limequery.com/189996?lang=pt-BR). 
+
+
+<center>
+<iframe src="https://rfoundation.limequery.com/189996?lang=pt-BR" height="100%" width="100%" style="min-height: 400px;"></iframe>
+</center>
 
 
 ---
