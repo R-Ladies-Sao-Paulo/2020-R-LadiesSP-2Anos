@@ -14,7 +14,7 @@ output:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
-#      ratio: 191:100    
+      ratio: 191:100    
 # Para exportar em PDF: pagedown::chrome_print("index.html", timeout = 600)
 # knit: pagedown::chrome_print
 ---
@@ -41,8 +41,9 @@ options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(fig.align = "center", message=FALSE, warning=FALSE)
 
 library(tidyverse)
-library(dados)
-
+#library(dados)
+# install.packages("devtools")
+#devtools::install_github("gadenbuie/xaringanExtra")
 ```
 
 ```{r xaringan-fit-screen, echo=FALSE}
@@ -61,8 +62,8 @@ meta() %>%
   meta_social(
     title = "R-Ladies São Paulo - 2 anos",
     description = paste(
-      "Apresentação do Meetup comemorativo de 2 anos da R-Ladies São Paulo",
-      "e a IDE RStudio"
+      "Apresentação do Meetup comemorativo de",
+      " 2 anos da R-Ladies São Paulo"
     ),
     url = "https://r-ladies-sao-paulo.github.io/2020-R-LadiesSP-2Anos/",
     image = "https://r-ladies-sao-paulo.github.io/2020-R-LadiesSP-2Anos/img/share-card.png",
