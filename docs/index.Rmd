@@ -14,6 +14,7 @@ output:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
+#      ratio: 191:100    
 # Para exportar em PDF: pagedown::chrome_print("index.html", timeout = 600)
 # knit: pagedown::chrome_print
 ---
@@ -47,6 +48,33 @@ library(dados)
 ```{r xaringan-fit-screen, echo=FALSE}
 library(xaringanExtra)
 xaringanExtra::use_fit_screen()
+```
+
+```{r xaringanExtra-share-again, echo=FALSE}
+xaringanExtra::use_share_again()
+```
+
+```{r metathis, echo=FALSE}
+library(metathis)
+meta() %>%
+  meta_name("github-repo" = "R-Ladies-Sao-Paulo/2020-R-LadiesSP-2Anos") %>% 
+  meta_social(
+    title = "R-Ladies São Paulo - 2 anos",
+    description = paste(
+      "Apresentação do Meetup comemorativo de 2 anos da R-Ladies São Paulo",
+      "e a IDE RStudio"
+    ),
+    url = "https://r-ladies-sao-paulo.github.io/2020-R-LadiesSP-2Anos/",
+    image = "https://r-ladies-sao-paulo.github.io/2020-R-LadiesSP-2Anos/img/share-card.png",
+    image_alt = paste(
+      "Primeiro slide da apresentação de ",
+      " aniversário das R-Ladies São Paulo"
+    ),
+    og_type = "website",
+    og_author = "R-Ladies São Paulo",
+    twitter_card_type = "summary_large_image",
+    twitter_creator = "@RLadiesSaoPaulo"
+  )
 ```
 
 # Pré-requisitos
