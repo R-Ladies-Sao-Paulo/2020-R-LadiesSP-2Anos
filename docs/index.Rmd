@@ -47,12 +47,13 @@ library(tidyverse)
 #library(dados)
 # install.packages("devtools")
 #devtools::install_github("gadenbuie/xaringanExtra")
+
 ```
 
 ```{r xaringan-fit-screen, echo=FALSE}
 library(xaringanExtra)
 xaringanExtra::use_fit_screen()
-
+xaringanExtra::use_panelset()
 ```
 
 ```{r xaringanExtra-share-again, echo=FALSE}
@@ -362,12 +363,34 @@ class:
 
 # Sorteio! E certificado :)
 
+
+.panelset[
+.panel[.panel-name[Formulário]
 - Formulário para o certificado E sorteio: **[http://bit.ly/presenca-rladies](http://bit.ly/presenca-rladies)**
 
 
 <center>
 <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSePXDbNHoV6Qo0COkt5SPAiE8phdE6gzNj33aF0Ucdhrjrr6w/viewform" height="100%" width="100%" style="min-height: 400px;"></iframe>
 </center>
+
+]
+
+.panel[.panel-name[Caneca!]
+
+```{r echo=FALSE, out.width="50%", fig.align='center'}
+knitr::include_graphics("img/caneca-sorteio.jpg")
+```
+
+]
+
+
+
+
+]
+
+
+
+
 ---
 class: 
 
