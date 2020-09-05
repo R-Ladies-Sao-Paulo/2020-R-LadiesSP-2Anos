@@ -402,6 +402,18 @@ class:
 ---
 class:  
 
+# Evento AI Inclusive - 17/09/2020
+
+- [Se inscreva no Meetup](https://www.meetup.com/ai-inclusive-rio-de-janeiro/events/272966613/)!
+
+```{r echo=FALSE, out.width="100%", fig.align='center'}
+knitr::include_graphics("img/ai-inclusive.PNG")
+```
+
+
+---
+class:  
+
 # Bolsas de diversidade de gênero
 
 ```{r echo=FALSE, out.width="50%", fig.align='center', fig.cap=""}
