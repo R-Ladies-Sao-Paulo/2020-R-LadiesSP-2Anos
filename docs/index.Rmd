@@ -342,7 +342,7 @@ class:
 knitr::include_graphics("img/palestrante-carol-moreno.png")
 ```
 
-Apresentação da Ana Carolina Moreno [disponível no GitHub](https://github.com/R-Ladies-Sao-Paulo/2020-R-LadiesSP-2Anos/blob/master/docs/AnaCarolinaMoreno_dados_pandemia.pdf).
+Apresentação da Ana Carolina Moreno [disponível neste link](https://r-ladies-sao-paulo.github.io/2020-R-LadiesSP-2Anos/AnaCarolinaMoreno_dados_pandemia.pdf).
 
 ---
 class:
