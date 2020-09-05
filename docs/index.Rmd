@@ -78,29 +78,9 @@ meta() %>%
   )
 ```
 
-# Pré-requisitos
-
-## `R` e `RStudio` instalados no seu notebook 
-
-```{r, echo=FALSE, out.width="40%"}
-knitr::include_graphics("img/rlogos/rstudio-r.jpg")
-```
-
-- Instale o R [fazendo o download aqui](https://cran.r-project.org/) e o RStudio [aqui](https://rstudio.com/products/rstudio/download/#download).
-
-
-## Pacote `tidyverse` instalado
-
-```{r eval=FALSE, include=TRUE}
-install.packages("tidyverse") # Para instalar 
-
-library(tidyverse) # Para carregar a biblioteca
-```
-
----
-class:
-
 # Programação
+
+- Sobre as R-Ladies
 
 - Sobre o Censo R-Ladies e leitura dos dados
 
@@ -276,6 +256,28 @@ class: center, middle, inverse
 # Vamos começar?
 
 ---
+class:
+
+# Pré-requisitos
+
+## `R` e `RStudio` instalados no seu notebook 
+
+```{r, echo=FALSE, out.width="40%"}
+knitr::include_graphics("img/rlogos/rstudio-r.jpg")
+```
+
+- Instale o R [fazendo o download aqui](https://cran.r-project.org/) e o RStudio [aqui](https://rstudio.com/products/rstudio/download/#download). Vamos usar os pacotes `tidyverse`, `googlesheets4`, `janitor` e `wordcloud`.
+
+
+## ou pelo `RStudio Cloud`
+
+- Através do link: [https://rstudio.cloud/project/1584702](https://rstudio.cloud/project/1584702)
+
+
+```{r, echo=FALSE, out.width="40%"}
+knitr::include_graphics("img/rstudiocloud.PNG")
+```
+---
 class:   
 
 # Analisando o Censo R-Ladies SP
@@ -323,23 +325,18 @@ class:
 knitr::include_graphics("img/rlogos/rstudio.jpg")
 ```
 ---
-class: middle, center
+class: 
 
-<!-- # TED -->
-
-<!-- ## Anicely Santos -->
-
+# TED
 
 ```{r echo=FALSE, out.width="100%"}
 knitr::include_graphics("img/palestrante-anicely-santos.png")
 ```
 
 ---
-class:   middle, center
+class: 
 
-<!-- # TED -->
-
-<!-- ## Ana Carolina Moreno -->
+# TED
 
 ```{r echo=FALSE, out.width="100%"}
 knitr::include_graphics("img/palestrante-carol-moreno.png")
@@ -347,24 +344,37 @@ knitr::include_graphics("img/palestrante-carol-moreno.png")
 
 
 ---
-class:  middle, center 
+class:
 
-<!-- # TED -->
-
-<!-- ## Natalia Souza -->
-
+# TED
 
 ```{r echo=FALSE, out.width="100%"}
 knitr::include_graphics("img/palestrante-natalia-souza.png")
 ```
 
+---
+class:
 
+# Sorteio! E certificado :)
+
+- Formulário para o certificado E sorteio: **[http://bit.ly/presenca-rladies](http://bit.ly/presenca-rladies)**
+
+
+<center>
+<iframe src="https://forms.gle/LUW4HfTACiq8Rk4B6" height="100%" width="100%" style="min-height: 400px;"></iframe>
+</center>
 ---
 class: 
 
 # TED
 
 ## Mesa Redonda
+
+```{r echo=FALSE, out.width="60%"}
+knitr::include_graphics("img/palestrante-anicely-santos.png")
+knitr::include_graphics("img/palestrante-carol-moreno.png")
+knitr::include_graphics("img/palestrante-natalia-souza.png")
+```
 
 ---
 class:   
