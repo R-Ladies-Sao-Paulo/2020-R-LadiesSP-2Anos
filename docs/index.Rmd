@@ -400,14 +400,17 @@ class:
 </center>
 
 ---
-class: inverse, middle
+class:  
 
 # Bolsas de diversidade de gênero
 
-```{r echo=FALSE, out.width="50%", fig.align='center', fig.cap="<a href='https://www.curso-r.com/'> Curso-R</a>"}
-knitr::include_graphics("https://d33wubrfki0l68.cloudfront.net/9b0699f18268059bdd2e5c21538a29eade7cbd2b/af827/assets/logo-curso-2.png")
+```{r echo=FALSE, out.width="50%", fig.align='center', fig.cap=""}
+knitr::include_graphics("img/cursor1-41.png")
 ```
 
+
+  
+.pull-left[
 - [Workshops](https://bit.ly/cursor-w-20202): 
   - Deploy
   - Introdução ao R com C++
@@ -419,7 +422,17 @@ knitr::include_graphics("https://d33wubrfki0l68.cloudfront.net/9b0699f18268059bd
   - Dashboards
   - Web Scraping
   - Deep Learning
-  
+]
+
+.pull-right[
+
+- [Curso-R](https://www.curso-r.com/):
+  - [Fórum](https://discourse.curso-r.com/)
+  - [Blog](https://www.curso-r.com/blog/)
+  - [Livro](https://livro.curso-r.com/)
+  - [Pacotes](https://www.curso-r.com/produtos/)
+
+]
 
 
 ---
