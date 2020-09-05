@@ -14,7 +14,7 @@ output:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
-      ratio: 191:100    
+#      ratio: 191:100    
 # Para exportar em PDF: pagedown::chrome_print("index.html", timeout = 600)
 # knit: pagedown::chrome_print
 ---
