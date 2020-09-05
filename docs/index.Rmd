@@ -28,7 +28,10 @@ layout: true
 <a href="http://instagram.com/RLadiesSaoPaulo">Instagram</a> |
 <a href="http://facebook.com/RLadiesSaoPaulo">Facebook</a> |
 <a href="https://github.com/rladies/meetup-presentations_sao-paulo">GitHub</a> |
-<a href="https://bit.ly/2020-18-rladies">bit.ly/2020-18-rladies</a>
+<a href="https://github.com/R-Ladies-Sao-Paulo/RLadies-Brasil">R-Ladies no Brasil</a> |
+<a href="https://bit.ly/2020-18-rladies">bit.ly/2020-18-rladies</a> 
+
+
 
 
 </span></div> 
@@ -49,6 +52,7 @@ library(tidyverse)
 ```{r xaringan-fit-screen, echo=FALSE}
 library(xaringanExtra)
 xaringanExtra::use_fit_screen()
+
 ```
 
 ```{r xaringanExtra-share-again, echo=FALSE}
@@ -378,11 +382,10 @@ knitr::include_graphics("img/palestrante-natalia-souza.png")
 ```
 
 ---
-class:   
+class: inverse, middle, center
 
-# Analisando o Censo R-Ladies SP
 
-## Considerações finais
+# Considerações finais
 
 ---
 class:
@@ -395,6 +398,66 @@ class:
 <center>
 <iframe src="https://docs.google.com/forms/d/11G1EdaLbJi0hBuhpVpVQdyijDAXbdOuY7YSdHfLfMis/viewform?edit_requested=true" height="100%" width="100%" style="min-height: 400px;"></iframe>
 </center>
+
+---
+class: inverse, middle
+
+# Bolsas de diversidade de gênero
+
+```{r echo=FALSE, out.width="50%", fig.align='center', fig.cap="<a href='https://www.curso-r.com/'> Curso-R</a>"}
+knitr::include_graphics("https://d33wubrfki0l68.cloudfront.net/9b0699f18268059bdd2e5c21538a29eade7cbd2b/af827/assets/logo-curso-2.png")
+```
+
+- [Workshops](https://bit.ly/cursor-w-20202): 
+  - Deploy
+  - Introdução ao R com C++
+
+
+- [Cursos](https://bit.ly/curso-r-c-20202):
+  - R para Data Science I 
+  - Introdução ao Machine Learning
+  - Dashboards
+  - Web Scraping
+  - Deep Learning
+  
+
+
+---
+class:
+
+# Pacote **dados**
+
+
+.pull-left[
+- [Disponível no GitHub](https://github.com/cienciadedatos/dados), em breve será submetido ao CRAN
+
+- Objetivo: Disponibilizar diversas bases de dados traduzidas para o português
+
+- Pacote em desenvolvimento, tradução realizada por R-Ladies do Brasil e Chile
+
+- Como ajudar? Testando!
+
+- Instalação do pacote `dados`:
+
+
+
+
+]
+
+.pull-right[
+
+<!-- Atualizar antes do evento -->
+
+
+```{r echo=FALSE, out.width="70%"}
+knitr::include_graphics("img/rlogos/hex-dados.png")
+```
+]
+
+```{r eval=FALSE, include=TRUE}
+remotes::install_github("cienciadedatos/dados")
+library(dados)
+```
 
 ---
 class:
@@ -422,10 +485,15 @@ class:
   - Github: [https://github.com/rladies/meetup-presentations_sao-paulo](https://github.com/rladies/meetup-presentations_sao-paulo)
   - R-Ladies LATAM Blog (Latin America) - Em breve!
   - **[Capítulos da R-Ladies no Brasil, e eventos online](https://github.com/R-Ladies-Sao-Paulo/RLadies-Brasil)**
-### Não tem capítulo na sua cidade e quer iniciar um?
-<center> Saiba como em <a href="https://rladies.org/about-us/help/"> R-Ladies - How do get involved </a> </center>
+
+<center>
+<h3> Não tem capítulo na sua cidade e quer iniciar um?</h3>
+
+
+Saiba como em <a href="https://rladies.org/about-us/help/"> R-Ladies - How do get involved </a> </center>
 
 
 
 
-- Apresentação feita com o pacote [xaringan](https://github.com/yihui/xaringan), e o tema `metropolis` modificado por [Bea Milz](https://beatrizmilz.com).
+- Apresentação feita com os pacotes [**xaringan**](https://github.com/yihui/xaringan) e [**xaringanExtra**](https://pkg.garrickadenbuie.com/xaringanExtra/)
+- Tema `metropolis` modificado por [Bea Milz](https://beatrizmilz.com).

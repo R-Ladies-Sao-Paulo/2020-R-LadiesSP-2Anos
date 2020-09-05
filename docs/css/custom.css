@@ -10,3 +10,10 @@
   float: right;
   padding-left: 1%;
 }
+
+
+.inverse a{
+   font-weight: bold;
+   color: #FFFFFF;
+   text-decoration: underline;
+}
