@@ -1,0 +1,95 @@
+---
+title: "Análise do Censo"
+author: "Jean Prado"
+date: "9/5/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+  #set of packages
+    if(!require(tidyverse)){install.packages("tidyverse"); library(tidyverse)}
+    library(lubridate)
+
+  #read
+    #allows to interact with files on Google Drive
+    if(!require(googledrive)){install.packages("googledrive"); library(googledrive)}
+    #helps with the interaction with Sheets as an authenticated Google user
+    if(!require(googlesheets4)){install.packages("googlesheets4"); library(googlesheets4)}
+
+  #explore data
+    if(!require(janitor)){install.packages("janitor"); library(janitor)}
+  
+  #text Mining
+    if(!require(wordcloud)){install.packages("wordcloud"); library(wordcloud)}
+    if(!require(tm)){install.packages("tm"); library(tm)}
+```
+
+# Faz a leitura dos dados
+```{r leitura_dados}
+id <- '1ht53wO-qiWsrF3zLIn6DaENNLLjQGqleZL6E6g0lMTc'
+
+rladies_censo2020_raw <- googlesheets4::read_sheet(id, sheet="Respostas")
+
+censo_cols <- googlesheets4::read_sheet(id, sheet="nome_colunas")
+```
+
+# Trata os dados
+```{r tidy_data}
+rladies_censo2020 <- rladies_censo2020_raw %>% 
+  dplyr::rename(set_names(censo_cols$nome_original, censo_cols$nome_final)) %>% 
+  mutate(p1_idade=interval(p1_nascimento, lubridate::today()) %/% lubridate::years(1)) %>% 
+  mutate_at(c('p1_maternidade_n', 'p2_renda_contribuem', 'p2_renda_vivem', 'p3_ano_titulo'),
+            ~str_replace_all(., "NULL", NA_character_)) %>% filter(!is.na(p0_origem)) %>% 
+  select(p0_data:p1_nascimento, p1_idade, everything())
+```
+
+# Análise sociodemográfico
+```{r p1_sociodemografico}
+# origem do censo
+rladies_censo2020 %>% count(p0_origem, sort=T)
+
+# p1_genero
+rladies_censo2020 %>% count(p1_genero, sort=T)
+
+# p1_idade
+rladies_censo2020 %>% 
+  ggplot(aes(p1_idade)) + geom_boxplot()
+
+# p1_raca
+rladies_censo2020 %>% 
+  janitor::tabyl(p1_raca) %>% 
+  mutate(percent=scales::percent(percent))
+
+# p1_maternidade
+rladies_censo2020 %>% 
+  janitor::tabyl(p1_maternidade)
+
+# p1_restricao_alimentar
+rladies_censo2020 %>% filter(!is.na(p1_restricao_alimentar_tipo)) %>% 
+  janitor::tabyl(p1_restricao_alimentar_tipo)
+
+# p1_representatividade
+rladies_censo2020 %>% 
+  group_by(p1_raca) %>% 
+  count(p1_representatividade) %>% 
+  mutate(pc=scales::percent(n/sum(n))) %>% View
+```
+
+# P2 e P3
+```{r p2_p3}
+rladies_censo2020 %>% 
+  janitor::tabyl(p2_renda_valor) %>% 
+  janitor::adorn_pct_formatting()
+
+rladies_censo2020 %>% count(p3_escolaridade, sort=T)
+
+rladies_censo2020 %>% count(p3_area_formacao, sort=T)
+
+rladies_censo2020 %>% 
+  tidytext::unnest_tokens(word, p3_area_formacao) %>% 
+  count(word) %>% filter(!word %in% stopwords('pt')) %>% 
+  ggplot(aes(label=word, size=n)) +
+  ggwordcloud::geom_text_wordcloud_area(rm_outside=T) +
+  scale_size_area(max_size=15) + theme_minimal()
+```
+
