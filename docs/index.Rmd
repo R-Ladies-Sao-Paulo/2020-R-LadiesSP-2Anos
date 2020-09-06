@@ -338,6 +338,8 @@ class:
 knitr::include_graphics("img/palestrante-anicely-santos.png")
 ```
 
+Apresentação da Anicely Santos [disponível neste link](https://docs.google.com/presentation/d/1F9goYOCrtsawyqJoeRcW8Y17g1FkrqaAN-Kjp5QXzA4/edit?usp=sharing).
+
 ---
 class: 
 
