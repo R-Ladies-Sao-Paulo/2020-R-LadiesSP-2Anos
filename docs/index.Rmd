@@ -360,6 +360,8 @@ class:
 knitr::include_graphics("img/palestrante-natalia-souza.png")
 ```
 
+Apresentação da Natalia Souza [disponível neste link](https://r-ladies-sao-paulo.github.io/2020-R-LadiesSP-2Anos/AnaCarolinaMoreno_dados_pandemia.pdf).
+
 ---
 class:
 
