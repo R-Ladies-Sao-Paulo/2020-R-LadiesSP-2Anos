@@ -28,7 +28,10 @@ layout: true
 <a href="http://instagram.com/RLadiesSaoPaulo">Instagram</a> |
 <a href="http://facebook.com/RLadiesSaoPaulo">Facebook</a> |
 <a href="https://github.com/rladies/meetup-presentations_sao-paulo">GitHub</a> |
-<a href="https://bit.ly/2020-18-rladies">bit.ly/2020-18-rladies</a>
+<a href="https://github.com/R-Ladies-Sao-Paulo/RLadies-Brasil">R-Ladies no Brasil</a> |
+<a href="https://bit.ly/2020-18-rladies">bit.ly/2020-18-rladies</a> 
+
+
 
 
 </span></div> 
@@ -44,11 +47,13 @@ library(tidyverse)
 #library(dados)
 # install.packages("devtools")
 #devtools::install_github("gadenbuie/xaringanExtra")
+
 ```
 
 ```{r xaringan-fit-screen, echo=FALSE}
 library(xaringanExtra)
 xaringanExtra::use_fit_screen()
+xaringanExtra::use_panelset()
 ```
 
 ```{r xaringanExtra-share-again, echo=FALSE}
@@ -333,6 +338,8 @@ class:
 knitr::include_graphics("img/palestrante-anicely-santos.png")
 ```
 
+Apresentação da Anicely Santos [disponível neste link](https://docs.google.com/presentation/d/1F9goYOCrtsawyqJoeRcW8Y17g1FkrqaAN-Kjp5QXzA4/edit?usp=sharing).
+
 ---
 class: 
 
@@ -353,17 +360,41 @@ class:
 knitr::include_graphics("img/palestrante-natalia-souza.png")
 ```
 
+Apresentação da Natalia Souza [disponível neste link](https://docs.google.com/presentation/d/1LWOlRugoJ2UqW_onPorWMk-04SUmWNnaZpLvi8FzCxI/edit?usp=sharing).
+
 ---
 class:
 
 # Sorteio! E certificado :)
 
+
+.panelset[
+.panel[.panel-name[Formulário]
 - Formulário para o certificado E sorteio: **[http://bit.ly/presenca-rladies](http://bit.ly/presenca-rladies)**
 
 
 <center>
 <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSePXDbNHoV6Qo0COkt5SPAiE8phdE6gzNj33aF0Ucdhrjrr6w/viewform" height="100%" width="100%" style="min-height: 400px;"></iframe>
 </center>
+
+]
+
+.panel[.panel-name[Caneca!]
+
+```{r echo=FALSE, out.width="50%", fig.align='center'}
+knitr::include_graphics("img/caneca-sorteio.jpg")
+```
+
+]
+
+
+
+
+]
+
+
+
+
 ---
 class: 
 
@@ -378,11 +409,10 @@ knitr::include_graphics("img/palestrante-natalia-souza.png")
 ```
 
 ---
-class:   
+class: inverse, middle, center
 
-# Analisando o Censo R-Ladies SP
 
-## Considerações finais
+# Considerações finais
 
 ---
 class:
@@ -395,6 +425,91 @@ class:
 <center>
 <iframe src="https://docs.google.com/forms/d/11G1EdaLbJi0hBuhpVpVQdyijDAXbdOuY7YSdHfLfMis/viewform?edit_requested=true" height="100%" width="100%" style="min-height: 400px;"></iframe>
 </center>
+
+---
+class:  
+
+# Evento AI Inclusive - 17/09/2020
+
+- [Se inscreva no Meetup](https://www.meetup.com/ai-inclusive-rio-de-janeiro/events/272966613/)!
+
+```{r echo=FALSE, out.width="100%", fig.align='center'}
+knitr::include_graphics("img/ai-inclusive.PNG")
+```
+
+
+---
+class:  
+
+# Bolsas de diversidade de gênero
+
+```{r echo=FALSE, out.width="50%", fig.align='center', fig.cap=""}
+knitr::include_graphics("img/cursor1-41.png")
+```
+
+
+  
+.pull-left[
+- [Workshops](https://bit.ly/cursor-w-20202): 
+  - Deploy
+  - Introdução ao R com C++
+
+
+- [Cursos](https://bit.ly/curso-r-c-20202):
+  - R para Data Science I 
+  - Introdução ao Machine Learning
+  - Dashboards
+  - Web Scraping
+  - Deep Learning
+]
+
+.pull-right[
+
+- [Curso-R](https://www.curso-r.com/):
+  - [Fórum](https://discourse.curso-r.com/)
+  - [Blog](https://www.curso-r.com/blog/)
+  - [Livro](https://livro.curso-r.com/)
+  - [Pacotes](https://www.curso-r.com/produtos/)
+
+]
+
+
+---
+class:
+
+# Pacote **dados**
+
+
+.pull-left[
+- [Disponível no GitHub](https://github.com/cienciadedatos/dados), em breve será submetido ao CRAN
+
+- Objetivo: Disponibilizar diversas bases de dados traduzidas para o português
+
+- Pacote em desenvolvimento, tradução realizada por R-Ladies do Brasil e Chile
+
+- Como ajudar? Testando!
+
+- Instalação do pacote `dados`:
+
+
+
+
+]
+
+.pull-right[
+
+<!-- Atualizar antes do evento -->
+
+
+```{r echo=FALSE, out.width="70%"}
+knitr::include_graphics("img/rlogos/hex-dados.png")
+```
+]
+
+```{r eval=FALSE, include=TRUE}
+remotes::install_github("cienciadedatos/dados")
+library(dados)
+```
 
 ---
 class:
@@ -410,6 +525,11 @@ class:
 
 
 ---
+class: middle, center, inverse
+
+# Resultado do sorteio!
+
+---
 class:   
 
 # Como saber mais?
@@ -422,10 +542,15 @@ class:
   - Github: [https://github.com/rladies/meetup-presentations_sao-paulo](https://github.com/rladies/meetup-presentations_sao-paulo)
   - R-Ladies LATAM Blog (Latin America) - Em breve!
   - **[Capítulos da R-Ladies no Brasil, e eventos online](https://github.com/R-Ladies-Sao-Paulo/RLadies-Brasil)**
-### Não tem capítulo na sua cidade e quer iniciar um?
-<center> Saiba como em <a href="https://rladies.org/about-us/help/"> R-Ladies - How do get involved </a> </center>
+
+<center>
+<h3> Não tem capítulo na sua cidade e quer iniciar um?</h3>
+
+
+Saiba como em <a href="https://rladies.org/about-us/help/"> R-Ladies - How do get involved </a> </center>
 
 
 
 
-- Apresentação feita com o pacote [xaringan](https://github.com/yihui/xaringan), e o tema `metropolis` modificado por [Bea Milz](https://beatrizmilz.com).
+- Apresentação feita com os pacotes [**xaringan**](https://github.com/yihui/xaringan) e [**xaringanExtra**](https://pkg.garrickadenbuie.com/xaringanExtra/)
+- Tema `metropolis` modificado por [Bea Milz](https://beatrizmilz.com).
